@@ -1,0 +1,74 @@
+
+GUESSES EXAMPLE : 
+
+word = 'dragonfruit'
+
+
+# user makes the first guess
+# guesses = 3
+
+# # while loop
+# while guesses > 0:
+#     # as long as the guesses are correct, keep prompting the user to guess
+#     letter = input("Guess a letter: ")
+#     if letter in word:
+#         print("That letter is in the word")
+#     else:
+#         print("Nope, that letter is not in the word.")
+#         guesses -= 1
+#         print("You have " + str(guesses) + " remaining guesses")
+# # we get to line 12 when they guess a letter that's not in the word
+# print("You have used up your guesses, game over")
+
+display = ''
+# for loop
+for letter in word:
+    print(letter)
+    display += ' _'
+
+print(display)
+
+
+Word Count Example 5/10
+import sys
+from pprint import pprint
+
+# +++your code here+++
+
+# Define print_words(filename) and print_top(filename) functions.
+# You could write a helper utility function that reads a file
+# and builds and returns a word/count dict for it.
+# Then print_words() and print_top() can just call the utility function.
+
+
+def print_words(filename):
+    # code for counting words is going to go in here
+    print(filename)
+    with open(filename) as file:
+        # tell python to turn the text file into a list of words
+        word_list = file.read().split()
+        # sort the list alphabetically
+        word_list.sort()
+    # when done reading the file, Python closes it and we outdent
+    # print(word_list)
+    for i in range(len(word_list)):
+        # replace words with their lower case version in the list
+        word_list[i] = word_list[i].lower()
+
+    word_counts = {}
+    for word in word_list:
+        if word in word_counts.keys():
+            # check if word is already in the dict
+            word_counts[word] += 1
+        else:
+            word_counts[word] = 1
+    # word_counts = {
+    #     "we": 5,
+    #     "be": 4
+    # }
+    pprint(word_counts)
+
+
+def print_top(filename):
+    pass
+
