@@ -4,35 +4,29 @@ def play_game(filename):
     with open(filename) as file:
         word_list = file.read().split()
         random_word = random.choice(word_list)
-    print(random_word)
-    display = ''
-    for word in random_word:
-        display += ' _'
-    print(display)
-
-    word_list= {}
-#  how do we display random word in dict or list 
-#  how do we break that word down and assign key and values 
+    
+    while ' ' in word or '-' in word:
+        word = random.choice(word_list)
+    
+    return word 
 
 
+def hangman():
+    word = get_valid_word(words)
+    word_letters = set(word)  #letters in word 
+    used_letters = set()#what users have guessed 
 
-    guesses = 3
-    while guesses > 0:
-        letter = input("guess a letter: ")
-        if letter in random_word:
-            print('correct')
-            
-        else:
-            guesses -= 1
-            print('nope')
-            
-    print("game over")
+    user_letter = input("Guess a Letter.")
+    if user_letter in alphabet - used_letters:
+            used_letters.add(used_letters)
+            if user_letter.remove(user_letter):
+                 word.letters.remove(user_letter)
+                 
+    elif user_letter in used_letters:
+            print("You have already guessed this character. Please try again")
 
-
-
-
-
-
+    else:
+        print("Not a valid guess.")
 
 
 if __name__ == "__main__":
