@@ -4,7 +4,30 @@ import random
 def play_game(filename):
     with open(filename) as file:
         word_list = file.read().split()
-        random_word = random.choice(word_list)
+    easy_list = []
+    med_list = [] 
+    hard_list = []
+    for word in word_list:
+        if len(word) < 4:
+            easy_list.append(word)
+        elif 3 < len(word) < 7:
+            med_list.append(word)
+        else:
+            hard_list.append(word)
+
+    level = None       
+    while level not in ["easy", "medium", "hard"]:
+        level = input(" What difficulty level would you like? easy, medium or hard?").lower()
+        if level == "easy":
+            word_list = easy_list
+        elif level == "medium":
+            word_list = med_list
+        elif level == "hard":
+            word_list = hard_list
+        else:
+            print("Please choose easy, medium or hard.")
+    
+    random_word = random.choice(word_list).upper()
     print(random_word)
     display = ''
     for word in random_word:
@@ -26,7 +49,7 @@ def play_game(filename):
             print("YOU WIN!")
             break
             
-        guess = input("Guess a letter : ")
+        guess = input("Guess a letter : ").upper()
         letters_guessed += guess
 
         if guess in random_word: 
