@@ -2,10 +2,11 @@ import random
 
 
 def play_game(filename):
+
     with open(filename) as file:
         word_list = file.read().split()
     easy_list = []
-    med_list = [] 
+    med_list = []
     hard_list = []
     for word in word_list:
         if len(word) < 4:
@@ -48,6 +49,7 @@ def play_game(filename):
         if "_" not in display:
             print("YOU WIN!")
             break
+
             
         guess = input("Guess a letter : ").upper()
         letters_guessed += guess
@@ -62,14 +64,24 @@ def play_game(filename):
             fail_count -= 1
             print("\n")
             print("Nope! Guess again!")
+            # print(f"You have {guesses} left!)
             print("Letters guessed :", (letters_guessed))
             print("\n")
-
 
         if fail_count == 0:
             print("\n")
             print(f"LOSER! The word was {random_word}")
 
+    play_again = None
+    while play_again not in ["y", "n"]:
+        play_again = input("Do you want to play again? Y / N ").lower()
+        if play_again == "y":
+            play_game("words.txt")
+        else:
+            print("Thank you for playing! ")
+        
+        break
+                
 
 if __name__ == "__main__":
-    play_game("test-word.txt")
+    play_game("words.txt")
